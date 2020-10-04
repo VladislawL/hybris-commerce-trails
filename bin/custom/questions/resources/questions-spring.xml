@@ -37,4 +37,6 @@
 		<property name="extensionName" value="questions" />
 	</bean>
 
+	<bean id="questionsCountAttributeHandler" class="com.training.questions.attributehandlers.QuestionsCountAttributeHandler" />
+
 </beans>

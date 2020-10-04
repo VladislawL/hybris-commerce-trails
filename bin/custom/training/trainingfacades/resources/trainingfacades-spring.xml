@@ -12,6 +12,19 @@
 		
 	<context:annotation-config/>
 
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="commerceSearchResultProductConverter" />
+		<property name="add" ref="searchResultProductQuestionsCountPopulator" />
+	</bean>
+
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="productConverter" />
+		<property name="add" ref="productQuestionsCountPopulator" />
+	</bean>
+
+	<bean id="productQuestionsCountPopulator" class="com.training.facades.populators.ProductQuestionsCountPopulator" />
+	<bean id="searchResultProductQuestionsCountPopulator" class="com.training.facades.populators.SearchResultProductQuestionsCountPopulator" />
+
 	<bean name="questionPopulator" class="com.training.facades.populators.QuestionDataPopulator" >
 		<property name="questionDataConverter" ref="questionConverter"/>
 	</bean>

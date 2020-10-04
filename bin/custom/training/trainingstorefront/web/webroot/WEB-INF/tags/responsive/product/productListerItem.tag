@@ -57,6 +57,11 @@
 			</div>
 		</div>
 
+		<div class="questions-count">
+			<span class="glyphicon glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+			<c:out value="Questions: ${product.questionsCount}" />
+		</div>
+
 	</ycommerce:testId>
 </li>
 

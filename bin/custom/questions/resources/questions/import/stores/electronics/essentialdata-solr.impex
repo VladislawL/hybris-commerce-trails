@@ -1,0 +1,31 @@
+# -----------------------------------------------------------------------
+# Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+# -----------------------------------------------------------------------
+$productCatalog=electronicsProductCatalog
+$catalogVersions=catalogVersions(catalog(id),version);
+$serverConfigName=electronicsSolrServerConfig
+$indexConfigName=electronicsSolrIndexConfig
+$searchConfigName=electronicsPageSize
+$facetSearchConfigName=electronicsIndex
+$facetSearchConfigDescription=Electronics Solr Index
+$searchIndexNamePrefix=electronics
+$solrIndexedType=electronicsProductType
+$indexBaseSite=electronics
+$indexLanguages=ja,en,de,zh
+$indexCurrencies=JPY,USD
+$questionsCountRange=electronicsQuestionsCountRange
+
+
+# Define price range set
+INSERT_UPDATE SolrValueRangeSet; name[unique = true]  ; qualifier      ; type; solrValueRanges(&rangeValueRefID)
+                               ; $questionsCountRange ; questionsCount ; int ; rangeRefQuestionsCountRange1,rangeRefQuestionsCountRange2,rangeRefQuestionsCountRange3
+
+# Define price ranges
+INSERT_UPDATE SolrValueRange; &rangeValueRefID             ; solrValueRangeSet(name)[unique = true]; name[unique = true]; from; to
+                            ; rangeRefQuestionsCountRange1 ; $questionsCountRange                  ; "0-5"              ; 0   ; 5
+                            ; rangeRefQuestionsCountRange2 ; $questionsCountRange                  ; "0-20"             ; 0   ; 20
+                            ; rangeRefQuestionsCountRange3 ; $questionsCountRange                  ; "0-100"            ; 0   ; 100
+
+# Non-facet properties
+INSERT_UPDATE SolrIndexedProperty; solrIndexedType(identifier)[unique = true]; name[unique = true]; type(code); sortableType(code); currency[default = false]; localized[default = false]; multiValue[default = false]; useForSpellchecking[default = false]; useForAutocomplete[default = false]; fieldValueProvider; valueProviderParameter
+                                 ; $solrIndexedType                          ; questionsCount     ; int       ;                   ;                          ;                           ;                            ;                                     ;                                    ;                   ;
