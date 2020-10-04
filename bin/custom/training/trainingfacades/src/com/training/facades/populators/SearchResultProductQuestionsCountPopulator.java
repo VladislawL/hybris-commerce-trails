@@ -9,6 +9,6 @@ public class SearchResultProductQuestionsCountPopulator implements Populator<Sea
 
     @Override
     public void populate(SearchResultValueData searchResultValueData, ProductData productData) throws ConversionException {
-        productData.setQuestionsCount((Integer) searchResultValueData.getValues().get("questionsCount"));
+        productData.setQuestionsCount((Integer) searchResultValueData.getValues().get("questionsCountValue"));
     }
 }
